@@ -29,7 +29,7 @@ interface Knex extends Knex.QueryInterface {
     __knex__: string;
 
     raw: Knex.RawBuilder;
-    transaction<T>(transactionScope: (trx: Knex.Transaction) => Promise<T> | Bluebird<T> | void): Bluebird<T>;
+    transaction<T>(transactionScope: (trx: Knex.Transaction) => Promise<T> | Bluebird<T> | void, options?: object): Bluebird<T>;
     destroy(callback: (...args: any[]) => void): void;
     destroy(): Bluebird<void>;
     batchInsert(tableName: TableName, data: any[], chunkSize?: number): Knex.QueryBuilder;
@@ -686,6 +686,18 @@ declare namespace Knex {
         numTestsPerRun?: number;
         softIdleTimeoutMillis?: number;
         Promise?: any;
+        delegateToDriverDialect?: boolean
+        options?: PoolOptionsConfig;
+    }
+
+    interface PoolOptionsConfig {
+        poolMin?: number;
+        poolMax?: number;
+        homogeneous?: boolean;
+        user?: string;
+        password?: string;
+        connectString?: string;
+        stmtCacheSize?: number;
     }
 
     interface MigratorConfig {
