@@ -686,7 +686,7 @@ declare namespace Knex {
         numTestsPerRun?: number;
         softIdleTimeoutMillis?: number;
         Promise?: any;
-        delegateToDriverDialect?: boolean
+        delegateToDriverDialect?: boolean;
         options?: PoolOptionsConfig;
     }
 
